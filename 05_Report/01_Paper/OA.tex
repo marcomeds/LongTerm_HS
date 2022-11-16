@@ -1,0 +1,86 @@
+%  \documentclass[oneside,11pt]{article}
+
+% \input{preamble.tex}
+% %%% HELPER CODE FOR DEALING WITH EXTERNAL REFERENCES
+% \usepackage{xr}
+% \makeatletter
+% \newcommand*{\addFileDependency}[1]{
+%   \typeout{(#1)}
+%   \@addtofilelist{#1}
+%   \IfFileExists{#1}{}{\typeout{No file #1.}}
+% }
+% \makeatother
+
+
+% \newcommand*{\myexternaldocument}[1]{
+%     \externaldocument{#1}
+%     \addFileDependency{#1.tex}
+%     \addFileDependency{#1.aux}
+% }
+
+% %\myexternaldocument{OA}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT
+% \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% APPENDIX 
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{section}{0}
+\pagenumbering{gobble}
+
+
+\begin{center}
+	\LARGE The limits of self-commitment and private paternalism \\[0.5em]
+	\Large{Appendix $-$ For Online Publication} \\[1em]
+	\large \author{Craig McIntosh \and Isaac Meza \and Joyce Sadka \and Enrique Seira}
+\end{center}
+
+\appendix
+\pagenumbering{arabic}
+\renewcommand\thefigure{OA-\arabic{figure}}
+\renewcommand\thetable{OA-\arabic{table}}
+\renewcommand*{\thepage}{OA - \arabic{page}}
+\renewcommand\thesection{Appendix \Alph{section}.}
+\renewcommand\thesubsection{\Alph{section}.\arabic{subsection}}
+
+%\renewcommand{\cftparskip}{0em} % NOT NEEDED
+\renewcommand\cftsecdotsep{\cftdotsep}
+\renewcommand\cftsubsecdotsep{\cftnodots}
+\renewcommand{\cftsecnumwidth}{6em}
+ \renewcommand{\cftpnumalign}{r}
+%\renewcommand{\cftsecleader}{\normalfont\cftdotfill{\cftsecdotsep}}
+
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}\hspace{1.8em}}
+%\renewcommand{\cftsecpagefont}{20em}
+%\renewcommand{\cftfignumwidth}{6em}
+%\renewcommand{\cfttabnumwidth}{3.3em}
+
+%\tableofcontents
+\etocdepthtag.toc{mtappendix}
+\etocsettagdepth{mtchapter}{none}
+\etocsettagdepth{mtappendix}{subsection}
+
+\setstretch{0.9}
+%\renewcommand\contentsname{} % the empty name
+
+\begingroup
+\let\clearpage\relax
+%\vspace{-1.5em} % the removed space. Set as appropriate
+\tableofcontents
+\endgroup
+
+
+\clearpage
+\section{Appendix }
+
+
+\clearpage
+\bibliographystyle{authordate1}
+%\bibliographystyle{amsalpha}
+%\bibliographystyle{AER}
+
+\bibliography{References}
