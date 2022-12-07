@@ -50,3 +50,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Data
+01_Data/*
+
+# Mauricio's files
+Mauricio/*
