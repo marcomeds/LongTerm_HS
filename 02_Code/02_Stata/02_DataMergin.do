@@ -9,32 +9,53 @@ foreach ano in 2005 2006 2007 2008 2009 2010{
 	drop if N>1
 	drop N
 	gen curp_short=curp
-	gegen Total1=rowtotal(p_delta1*),missing
+	gegen Total1=rowtotal(p_delta1_5* p_delta1_6*),missing
 	gegen Total_IPN1=rowtotal(p_delta1_5*),missing
 	gegen Total_UNAM1=rowtotal(p_delta1_6*),missing
 	
 	* This next section finds the minimum running variable for each obs
-	* An observation can have several running variables (normalized_score - cutoff)
-	* We take the minimum in absolute value (the one closest to the cutoff)
-	unab r_delta1_all: r_delta1*
-	foreach r_delta1 of local r_delta1_all{
-		gen abs_`r_delta1'=abs(`r_delta1')
+	* An observation can have several running variables because its around the cuttoff or MID of several schools (cutoff - score and/or MID - score)
+	* We take the minimum in absolute value (the one closest to the MID)
+	unab r_mid_delta1_all: r_mid_delta1*
+	foreach r_mid_delta1 of local r_mid_delta1_all{
+		gen abs_`r_mid_delta1'=abs(`r_mid_delta1')
 	}
-	gegen r_IPN1=rowmin(abs_r_delta1_5*)
-	gegen r_UNAM1=rowmin(abs_r_delta1_6*)
-	gegen r_ELITE1=rowmin(r_IPN1 r_UNAM1)
-	unab r_delta1_IPN: r_delta1_5*
-	foreach r_delta1 of local r_delta1_IPN{
-		replace r_IPN1=`r_delta1' if r_IPN1 == abs_`r_delta1'
+	gegen r_mid_IPN1=rowmin(abs_r_mid_delta1_5*)
+	gegen r_mid_UNAM1=rowmin(abs_r_mid_delta1_6*)
+	gegen r_mid_ELITE1=rowmin(r_mid_IPN1 r_mid_UNAM1)
+	unab r_mid_delta1_IPN: r_mid_delta1_5*
+	foreach r_mid_delta1 of local r_mid_delta1_IPN{
+		replace r_mid_IPN1=`r_mid_delta1' if r_mid_IPN1 == abs_`r_mid_delta1'
 	}
-	unab r_delta1_UNAM: r_delta1_6*
-	foreach r_delta1 of local r_delta1_UNAM{
-		replace r_UNAM1=`r_delta1' if r_UNAM1 == abs_`r_delta1'
+	unab r_mid_delta1_UNAM: r_mid_delta1_6*
+	foreach r_mid_delta1 of local r_mid_delta1_UNAM{
+		replace r_mid_UNAM1=`r_mid_delta1' if r_mid_UNAM1 == abs_`r_mid_delta1'
 	}
-	replace r_ELITE1=r_IPN1 if r_ELITE1 == abs(r_IPN1)
-	replace r_ELITE1=r_UNAM1 if r_ELITE1 == abs(r_UNAM1)
+	replace r_mid_ELITE1=r_mid_IPN1 if r_mid_ELITE1 == abs(r_mid_IPN1)
+	replace r_mid_ELITE1=r_mid_UNAM1 if r_mid_ELITE1 == abs(r_mid_UNAM1)
 	
-	keep curp nglobal normalized_score curp_short Total1 Total_IPN1 Total_UNAM1 p_delta1_5* p_delta1_6* r_delta1_5* r_delta1_6* r_IPN1 r_UNAM1 r_ELITE1
+	* We take the minimum in absolute value (the one closest to the cutoff)
+	unab r_tau_delta1_all: r_tau_delta1*
+	foreach r_tau_delta1 of local r_tau_delta1_all{
+		gen abs_`r_tau_delta1'=abs(`r_tau_delta1')
+	}
+	gegen r_tau_IPN1=rowmin(abs_r_tau_delta1_5*)
+	gegen r_tau_UNAM1=rowmin(abs_r_tau_delta1_6*)
+	gegen r_tau_ELITE1=rowmin(r_tau_IPN1 r_tau_UNAM1)
+	unab r_tau_delta1_IPN: r_tau_delta1_5*
+	foreach r_tau_delta1 of local r_tau_delta1_IPN{
+		replace r_tau_IPN1=`r_tau_delta1' if r_tau_IPN1 == abs_`r_tau_delta1'
+	}
+	unab r_tau_delta1_UNAM: r_tau_delta1_6*
+	foreach r_tau_delta1 of local r_tau_delta1_UNAM{
+		replace r_tau_UNAM1=`r_tau_delta1' if r_tau_UNAM1 == abs_`r_tau_delta1'
+	}
+	replace r_tau_ELITE1=r_tau_IPN1 if r_tau_ELITE1 == abs(r_tau_IPN1)
+	replace r_tau_ELITE1=r_tau_UNAM1 if r_tau_ELITE1 == abs(r_tau_UNAM1)
+	
+	keep curp nglobal normalized_score curp_short Total1 Total_IPN1 Total_UNAM1 p_delta1_* ///
+	r_mid_delta1_5* r_mid_delta1_6* r_mid_IPN1 r_mid_UNAM1 r_mid_ELITE1 ///
+	r_tau_delta1_5* r_tau_delta1_6* r_tau_IPN1 r_tau_UNAM1 r_tau_ELITE1
 	tempfile temp1
 	save `temp1', replace
 
@@ -49,32 +70,53 @@ foreach ano in 2005 2006 2007 2008 2009 2010{
 	drop if N>1
 	drop N
 	gen curp_short=curp
-	gegen Total2=rowtotal(p_delta2*),missing
+	gegen Total2=rowtotal(p_delta2_5* p_delta2_6*),missing
 	gegen Total_IPN2=rowtotal(p_delta2_5*),missing
 	gegen Total_UNAM2=rowtotal(p_delta2_6*),missing
 	
 	* This next section finds the minimum running variable for each obs
-	* An observation can have several running variables (normalized_score - cutoff)
-	* We take the minimum in absolute value (the one closest to the cutoff)
-	unab r_delta2_all: r_delta2*
-	foreach r_delta2 of local r_delta2_all{
-		gen abs_`r_delta2'=abs(`r_delta2')
+	* An observation can have several running variables because its around the cuttoff or MID of several schools (cutoff - score and/or MID - score)
+	* We take the minimum in absolute value (the one closest to the MID)
+	unab r_mid_delta2_all: r_mid_delta2*
+	foreach r_mid_delta2 of local r_mid_delta2_all{
+		gen abs_`r_mid_delta2'=abs(`r_mid_delta2')
 	}
-	gegen r_IPN2=rowmin(abs_r_delta2_5*)
-	gegen r_UNAM2=rowmin(abs_r_delta2_6*)
-	gegen r_ELITE2=rowmin(r_IPN2 r_UNAM2)
-	unab r_delta2_IPN: r_delta2_5*
-	foreach r_delta2 of local r_delta2_IPN{
-		replace r_IPN2=`r_delta2' if r_IPN2 == abs_`r_delta2'
+	gegen r_mid_IPN2=rowmin(abs_r_mid_delta2_5*)
+	gegen r_mid_UNAM2=rowmin(abs_r_mid_delta2_6*)
+	gegen r_mid_ELITE2=rowmin(r_mid_IPN2 r_mid_UNAM2)
+	unab r_mid_delta2_IPN: r_mid_delta2_5*
+	foreach r_mid_delta2 of local r_mid_delta2_IPN{
+		replace r_mid_IPN2=`r_mid_delta2' if r_mid_IPN2 == abs_`r_mid_delta2'
 	}
-	unab r_delta2_UNAM: r_delta2_6*
-	foreach r_delta2 of local r_delta2_UNAM{
-		replace r_UNAM2=`r_delta2' if r_UNAM2 == abs_`r_delta2'
+	unab r_mid_delta2_UNAM: r_mid_delta2_6*
+	foreach r_mid_delta2 of local r_mid_delta2_UNAM{
+		replace r_mid_UNAM2=`r_mid_delta2' if r_mid_UNAM2 == abs_`r_mid_delta2'
 	}
-	replace r_ELITE2=r_IPN2 if r_ELITE2 == abs(r_IPN2)
-	replace r_ELITE2=r_UNAM2 if r_ELITE2 == abs(r_UNAM2)
+	replace r_mid_ELITE2=r_mid_IPN2 if r_mid_ELITE2 == abs(r_mid_IPN2)
+	replace r_mid_ELITE2=r_mid_UNAM2 if r_mid_ELITE2 == abs(r_mid_UNAM2)
 	
-	keep curp nglobal normalized_score curp_short Total2 Total_IPN2 Total_UNAM2 p_delta2_5* p_delta2_6* r_delta2_5* r_delta2_6* r_IPN2 r_UNAM2 r_ELITE2
+	* We take the minimum in absolute value (the one closest to the cutoff)
+	unab r_tau_delta2_all: r_tau_delta2*
+	foreach r_tau_delta2 of local r_tau_delta2_all{
+		gen abs_`r_tau_delta2'=abs(`r_tau_delta2')
+	}
+	gegen r_tau_IPN2=rowmin(abs_r_tau_delta2_5*)
+	gegen r_tau_UNAM2=rowmin(abs_r_tau_delta2_6*)
+	gegen r_tau_ELITE2=rowmin(r_tau_IPN2 r_tau_UNAM2)
+	unab r_tau_delta2_IPN: r_tau_delta2_5*
+	foreach r_tau_delta2 of local r_tau_delta2_IPN{
+		replace r_tau_IPN2=`r_tau_delta2' if r_tau_IPN2 == abs_`r_tau_delta2'
+	}
+	unab r_tau_delta2_UNAM: r_tau_delta2_6*
+	foreach r_tau_delta2 of local r_tau_delta2_UNAM{
+		replace r_tau_UNAM2=`r_tau_delta2' if r_tau_UNAM2 == abs_`r_tau_delta2'
+	}
+	replace r_tau_ELITE2=r_tau_IPN2 if r_tau_ELITE2 == abs(r_tau_IPN2)
+	replace r_tau_ELITE2=r_tau_UNAM2 if r_tau_ELITE2 == abs(r_tau_UNAM2)
+	
+	keep curp nglobal normalized_score curp_short Total2 Total_IPN2 Total_UNAM2 p_delta2_* ///
+	r_mid_delta2_5* r_mid_delta2_6* r_mid_IPN2 r_mid_UNAM2 r_mid_ELITE2 ///
+	r_tau_delta2_5* r_tau_delta2_6* r_tau_IPN2 r_tau_UNAM2 r_tau_ELITE2
 	tempfile temp2
 	save `temp2', replace
 
@@ -88,32 +130,53 @@ foreach ano in 2005 2006 2007 2008 2009 2010{
 	drop if N>1
 	drop N
 	gen curp_short=curp
-	gegen Total3=rowtotal(p_delta3*),missing
+	gegen Total3=rowtotal(p_delta3_5* p_delta3_6*),missing
 	gegen Total_IPN3=rowtotal(p_delta3_5*),missing
 	gegen Total_UNAM3=rowtotal(p_delta3_6*),missing
 	
 	* This next section finds the minimum running variable for each obs
-	* An observation can have several running variables (normalized_score - cutoff)
+	* An observation can have several running variables because its around the cuttoff or MID of several schools (cutoff - score and/or MID - score)
+	* We take the minimum in absolute value (the one closest to the MID)
+	unab r_mid_delta3_all: r_mid_delta3*
+	foreach r_mid_delta3 of local r_mid_delta3_all{
+		gen abs_`r_mid_delta3'=abs(`r_mid_delta3')
+	}
+	gegen r_mid_IPN3=rowmin(abs_r_mid_delta3_5*)
+	gegen r_mid_UNAM3=rowmin(abs_r_mid_delta3_6*)
+	gegen r_mid_ELITE3=rowmin(r_mid_IPN3 r_mid_UNAM3)
+	unab r_mid_delta3_IPN: r_mid_delta3_5*
+	foreach r_mid_delta3 of local r_mid_delta3_IPN{
+		replace r_mid_IPN3=`r_mid_delta3' if r_mid_IPN3 == abs_`r_mid_delta3'
+	}
+	unab r_mid_delta3_UNAM: r_mid_delta3_6*
+	foreach r_mid_delta3 of local r_mid_delta3_UNAM{
+		replace r_mid_UNAM3=`r_mid_delta3' if r_mid_UNAM3 == abs_`r_mid_delta3'
+	}
+	replace r_mid_ELITE3=r_mid_IPN3 if r_mid_ELITE3 == abs(r_mid_IPN3)
+	replace r_mid_ELITE3=r_mid_UNAM3 if r_mid_ELITE3 == abs(r_mid_UNAM3)
+	
 	* We take the minimum in absolute value (the one closest to the cutoff)
-	unab r_delta3_all: r_delta3*
-	foreach r_delta3 of local r_delta3_all{
-		gen abs_`r_delta3'=abs(`r_delta3')
+	unab r_tau_delta3_all: r_tau_delta3*
+	foreach r_tau_delta3 of local r_tau_delta3_all{
+		gen abs_`r_tau_delta3'=abs(`r_tau_delta3')
 	}
-	gegen r_IPN3=rowmin(abs_r_delta3_5*)
-	gegen r_UNAM3=rowmin(abs_r_delta3_6*)
-	gegen r_ELITE3=rowmin(r_IPN3 r_UNAM3)
-	unab r_delta3_IPN: r_delta3_5*
-	foreach r_delta3 of local r_delta3_IPN{
-		replace r_IPN3=`r_delta3' if r_IPN3 == abs_`r_delta3'
+	gegen r_tau_IPN3=rowmin(abs_r_tau_delta3_5*)
+	gegen r_tau_UNAM3=rowmin(abs_r_tau_delta3_6*)
+	gegen r_tau_ELITE3=rowmin(r_tau_IPN3 r_tau_UNAM3)
+	unab r_tau_delta3_IPN: r_tau_delta3_5*
+	foreach r_tau_delta3 of local r_tau_delta3_IPN{
+		replace r_tau_IPN3=`r_tau_delta3' if r_tau_IPN3 == abs_`r_tau_delta3'
 	}
-	unab r_delta3_UNAM: r_delta3_6*
-	foreach r_delta3 of local r_delta3_UNAM{
-		replace r_UNAM3=`r_delta3' if r_UNAM3 == abs_`r_delta3'
+	unab r_tau_delta3_UNAM: r_tau_delta3_6*
+	foreach r_tau_delta3 of local r_tau_delta3_UNAM{
+		replace r_tau_UNAM3=`r_tau_delta3' if r_tau_UNAM3 == abs_`r_tau_delta3'
 	}
-	replace r_ELITE3=r_IPN3 if r_ELITE3 == abs(r_IPN3)
-	replace r_ELITE3=r_UNAM3 if r_ELITE3 == abs(r_UNAM3)
-
-	keep curp nglobal normalized_score curp_short Total3 Total_IPN3 Total_UNAM3 p_delta3_5* p_delta3_6* r_delta3_5* r_delta3_6* r_IPN3 r_UNAM3 r_ELITE3
+	replace r_tau_ELITE3=r_tau_IPN3 if r_tau_ELITE3 == abs(r_tau_IPN3)
+	replace r_tau_ELITE3=r_tau_UNAM3 if r_tau_ELITE3 == abs(r_tau_UNAM3)
+	
+	keep curp nglobal normalized_score curp_short Total3 Total_IPN3 Total_UNAM3 p_delta3_* ///
+	r_mid_delta3_5* r_mid_delta3_6* r_mid_IPN3 r_mid_UNAM3 r_mid_ELITE3 ///
+	r_tau_delta3_5* r_tau_delta3_6* r_tau_IPN3 r_tau_UNAM3 r_tau_ELITE3
 	tempfile temp3
 	save `temp3', replace
 
@@ -303,7 +366,7 @@ save "$output/metro_Reg", replace
 **FINAL BASIC MANIPULATIONS **
 
 use "$output/metro_Reg.dta", clear
-egen marginal=anycount(p_delta* ), values(5)
+egen marginal=anycount(p_delta*_5* p_delta*_6*), values(5)
 drop if marginal==0
 egen strata_pdelta1=group(anho p_delta1_*), missing
 egen strata_pdelta2=group(anho p_delta2_*), missing

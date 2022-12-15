@@ -23,8 +23,8 @@ cutoff_school_2009 <- metro2009 %>%
   filter(copc_asi != "") %>%
   rename(school_code = copc_asi) %>%
   # Substract 0.5 to make the RD symmetric around the cutoff. 
-  # Min score is 31 out of 128, so 30.5 is the min of the "artificial cutoff"
-  mutate(cutoff_school = 1 - (cutoff-0.5-30.5)/(128-30.5)) %>% 
+  # Min score is 31 out of 128, so 31.5 is the min of the "artificial cutoff"
+  mutate(cutoff_school = 1 - (cutoff - 31 - 0.5)/(128-31)) %>% 
   select(-cutoff)
 
 # Save cutoff_school
@@ -83,8 +83,8 @@ for(i in c(1:20)){
     rename(!!var := cutoff_school)
 }
 
-DFmetro2009=data.frame(metro2009)
-DFmetro2009=DFmetro2009[,paste0("cutoff_opc_ed",str_pad(1:20,2,pad="0"))]
+DFMetro2009=data.frame(metro2009)
+DFMetro2009=DFMetro2009[,paste0("cutoff_opc_ed",str_pad(1:20,2,pad="0"))]
 
 
 
@@ -104,11 +104,11 @@ for(sc_temp in SchoolList){
   for(i in 3:20){
     padded_i=str_pad(i, 2, pad = "0")
     index=which(metro2009[[eval(paste0("opc_ed",padded_i))]]==sc_temp)
-    metro2009[index,eval(y):=apply(DFmetro2009[index,paste0("cutoff_opc_ed",str_pad((1):(i-1),2,pad="0"))],1,max,na.rm=T)]
+    metro2009[index,eval(y):=apply(DFMetro2009[index,paste0("cutoff_opc_ed",str_pad((1):(i-1),2,pad="0"))],1,max,na.rm=T)]
   }
 }
 
-rm(DFmetro2009)
+rm(DFMetro2009)
 ColsBasicas=c("curp","nglobal","normalized_score",
               paste0("opc_ed",str_pad(1:20,2,pad="0")),
               paste0("cutoff_opc_ed",str_pad(1:20,2,pad="0")),
@@ -121,17 +121,18 @@ save(metro2009_basic, file = "01_Data/02_Created/metro2009_MID.RData")
 
 
 rm(metro2009)
-delta1=0.5/(128-31)
-delta2=1/(128-31)
-delta3=2/(128-31)
-delta4=3/(128-31)
-delta5=4/(128-31)
+delta1=1/(128-31)
+delta2=2/(128-31)
+delta3=3/(128-31)
+#delta4=4/(128-31)
+#delta5=5/(128-31)
 
 
 for(sc_temp in SchoolList){
-  y = paste0("p_delta1_",sc_temp)
-  z = paste0("mid_eval_",sc_temp)
-  r = paste0("r_delta1_",sc_temp)
+  y = paste0("p_delta1_",sc_temp) # Local propensity
+  z = paste0("mid_eval_",sc_temp) # MID value
+  r_tau = paste0("r_tau_delta1_",sc_temp) # Running around cutoff
+  r_mid = paste0("r_mid_delta1_",sc_temp) # Running around MID
   tau_s=cutoff_school_2009$cutoff_school[cutoff_school_2009$school_code==sc_temp]
   
   #metro2009_basic[,eval(y):=NA]
@@ -154,21 +155,20 @@ for(sc_temp in SchoolList){
   metro2009_basic[index,eval(y):=10]
   
   #Part 3a: 0.5 if score \in (MID-delta,MID+delta] 
-  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta1)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta1)) & metro2009_basic[[z]]<tau_s  )
+  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta1)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta1)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
+  metro2009_basic[index,eval(r_mid):= round((metro2009_basic[[z]][index] - normalized_score) * (128 - 31), 1)]
   
-  #Part 3a: 0.5 if score \in (tau_s-delta,tau_s+delta]
-  index=which((metro2009_basic$normalized_score>(tau_s-delta1)) &  (metro2009_basic$normalized_score<=(tau_s+delta1)) & metro2009_basic[[z]]<tau_s  )
+  #Part 3b: 0.5 if score \in (tau_s-delta,tau_s+delta]
+  index=which((metro2009_basic$normalized_score>(tau_s-delta1)) &  (metro2009_basic$normalized_score<=(tau_s+delta1)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
-  
-  # Get the normalized score - cutoff
-  index=which(!is.na(metro2009_basic[[y]]))
-  metro2009_basic[index,eval(r):=normalized_score-tau_s]
+  metro2009_basic[index,eval(r_tau):= round((tau_s - normalized_score) * (128 - 31), 1)]
 }
 
 ColsBasicas=c("curp","nglobal","normalized_score",
               paste0("p_delta1_",SchoolList),
-              paste0("r_delta1_",SchoolList))
+              paste0("r_mid_delta1_",SchoolList),
+              paste0("r_tau_delta1_",SchoolList))
 
 metro2009_pdelta=metro2009_basic[,..ColsBasicas]
 
@@ -176,15 +176,16 @@ write_dta(metro2009_pdelta, path = "01_Data/02_Created/metro2009_pdelta1.dta", v
 save(metro2009_pdelta, file = "01_Data/02_Created/metro2009_pdelta1.RData")
 rm(metro2009_pdelta)
 
-ColsBasicas=c(paste0("p_delta1_",SchoolList), paste0("r_delta1_",SchoolList))
+ColsBasicas=c(paste0("p_delta1_",SchoolList), paste0("r_mid_delta1_",SchoolList), paste0("r_tau_delta1_",SchoolList))
 metro2009_basic[,eval(ColsBasicas):=NULL]
 
 
 
 for(sc_temp in SchoolList){
-  y = paste0("p_delta2_",sc_temp)
-  z = paste0("mid_eval_",sc_temp)
-  r = paste0("r_delta2_",sc_temp)
+  y = paste0("p_delta2_",sc_temp) # Local propensity
+  z = paste0("mid_eval_",sc_temp) # MID value
+  r_tau = paste0("r_tau_delta2_",sc_temp) # Running around cutoff
+  r_mid = paste0("r_mid_delta2_",sc_temp) # Running around MID
   tau_s=cutoff_school_2009$cutoff_school[cutoff_school_2009$school_code==sc_temp]
   
   #metro2009_basic[,eval(y):=NA]
@@ -207,21 +208,20 @@ for(sc_temp in SchoolList){
   metro2009_basic[index,eval(y):=10]
   
   #Part 3a: 0.5 if score \in (MID-delta,MID+delta] 
-  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta2)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta2)) & metro2009_basic[[z]]<tau_s  )
+  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta2)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta2)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
+  metro2009_basic[index,eval(r_mid):= round((metro2009_basic[[z]][index] - normalized_score) * (128 - 31), 1)]
   
-  #Part 3a: 0.5 if score \in (tau_s-delta,tau_s+delta]
-  index=which((metro2009_basic$normalized_score>(tau_s-delta2)) &  (metro2009_basic$normalized_score<=(tau_s+delta2)) & metro2009_basic[[z]]<tau_s  )
+  #Part 3b: 0.5 if score \in (tau_s-delta,tau_s+delta]
+  index=which((metro2009_basic$normalized_score>(tau_s-delta2)) &  (metro2009_basic$normalized_score<=(tau_s+delta2)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
-  
-  # Get the normalized score - cutoff
-  index=which(!is.na(metro2009_basic[[y]]))
-  metro2009_basic[index,eval(r):=normalized_score-tau_s]
+  metro2009_basic[index,eval(r_tau):= round((tau_s - normalized_score) * (128 - 31), 1)]
 }
 
 ColsBasicas=c("curp","nglobal","normalized_score",
               paste0("p_delta2_",SchoolList),
-              paste0("r_delta2_",SchoolList))
+              paste0("r_mid_delta2_",SchoolList),
+              paste0("r_tau_delta2_",SchoolList))
 
 metro2009_pdelta=metro2009_basic[,..ColsBasicas]
 
@@ -229,15 +229,16 @@ write_dta(metro2009_pdelta, path = "01_Data/02_Created/metro2009_pdelta2.dta", v
 save(metro2009_pdelta, file = "01_Data/02_Created/metro2009_pdelta2.RData")
 rm(metro2009_pdelta)
 
-ColsBasicas=c(paste0("p_delta2_",SchoolList), paste0("r_delta2_",SchoolList))
+ColsBasicas=c(paste0("p_delta2_",SchoolList), paste0("r_mid_delta2_",SchoolList), paste0("r_tau_delta2_",SchoolList))
 metro2009_basic[,eval(ColsBasicas):=NULL]
 
 
 
 for(sc_temp in SchoolList){
-  y = paste0("p_delta3_",sc_temp)
-  z = paste0("mid_eval_",sc_temp)
-  r = paste0("r_delta3_",sc_temp)
+  y = paste0("p_delta3_",sc_temp) # Local propensity
+  z = paste0("mid_eval_",sc_temp) # MID value
+  r_tau = paste0("r_tau_delta3_",sc_temp) # Running around cutoff
+  r_mid = paste0("r_mid_delta3_",sc_temp) # Running around MID
   tau_s=cutoff_school_2009$cutoff_school[cutoff_school_2009$school_code==sc_temp]
   
   #metro2009_basic[,eval(y):=NA]
@@ -260,21 +261,20 @@ for(sc_temp in SchoolList){
   metro2009_basic[index,eval(y):=10]
   
   #Part 3a: 0.5 if score \in (MID-delta,MID+delta] 
-  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta3)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta3)) & metro2009_basic[[z]]<tau_s  )
+  index=which((metro2009_basic$normalized_score>(metro2009_basic[[z]]-delta3)) &  (metro2009_basic$normalized_score<=(metro2009_basic[[z]]+delta3)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
+  metro2009_basic[index,eval(r_mid):= round((metro2009_basic[[z]][index] - normalized_score) * (128 - 31), 1)]
   
-  #Part 3a: 0.5 if score \in (tau_s-delta,tau_s+delta]
-  index=which((metro2009_basic$normalized_score>(tau_s-delta3)) &  (metro2009_basic$normalized_score<=(tau_s+delta3)) & metro2009_basic[[z]]<tau_s  )
+  #Part 3b: 0.5 if score \in (tau_s-delta,tau_s+delta]
+  index=which((metro2009_basic$normalized_score>(tau_s-delta3)) &  (metro2009_basic$normalized_score<=(tau_s+delta3)) & metro2009_basic[[z]]<tau_s)
   metro2009_basic[index,eval(y):=5]
-  
-  # Get the normalized score - cutoff
-  index=which(!is.na(metro2009_basic[[y]]))
-  metro2009_basic[index,eval(r):=normalized_score-tau_s]
+  metro2009_basic[index,eval(r_tau):= round((tau_s - normalized_score) * (128 - 31), 1)]
 }
 
 ColsBasicas=c("curp","nglobal","normalized_score",
               paste0("p_delta3_",SchoolList),
-              paste0("r_delta3_",SchoolList))
+              paste0("r_mid_delta3_",SchoolList),
+              paste0("r_tau_delta3_",SchoolList))
 
 metro2009_pdelta=metro2009_basic[,..ColsBasicas]
 
@@ -282,6 +282,6 @@ write_dta(metro2009_pdelta, path = "01_Data/02_Created/metro2009_pdelta3.dta", v
 save(metro2009_pdelta, file = "01_Data/02_Created/metro2009_pdelta3.RData")
 rm(metro2009_pdelta)
 
-ColsBasicas=c(paste0("p_delta3_",SchoolList), paste0("r_delta3_",SchoolList))
+ColsBasicas=c(paste0("p_delta3_",SchoolList), paste0("r_mid_delta3_",SchoolList), paste0("r_tau_delta3_",SchoolList))
 metro2009_basic[,eval(ColsBasicas):=NULL]
 
