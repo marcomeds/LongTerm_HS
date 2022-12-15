@@ -27,7 +27,7 @@ replace r_tau_UNAM3 = . if inlist(r_tau_UNAM3, -3, -2, -1, 0, 1, 2, 3)
 foreach var in $vars_balance {
 	
 	my_rdplot_mid `var' r_mid_ELITE3
-	graph export "$figures/rd_plot_`var'_pdelta3.pdf", replace
+	graph export "$figures/rd_plot_mid_`var'_pdelta3.pdf", replace
 	
 	my_rdplot_tau `var' r_tau_ELITE3
 	graph export "$figures/rd_plot_tau_`var'_pdelta3.pdf", replace

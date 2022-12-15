@@ -150,22 +150,52 @@ set more off, permanently
 		
 	end
 	
-	*** Produces rd_plots
-	capt prog drop my_rdplot
-	program my_rdplot, rclass
-	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3)] 
+	*** Produces rd_plots around tau
+	capt prog drop my_rdplot_tau
+	program my_rdplot_tau, rclass
+	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 90) artificial(real 0.5)] 
 	
 	marksample touse
 	markout `touse' `by'
 	gettoken var running_var : varlist
+	
+	tempvar var_mean
+	
+	local y_label: variable label `var'
+	egen `var_mean' = mean(`var'), by(`running_var')
 	
 	* Below threshold
 	*reg `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta'')
 	
 	
 	*	RD graph
-	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'')) ///
-		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff'))
+	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(navy) acolor(navy%10)) ///
+		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(maroon) acolor(maroon%10)) ///
+		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(navy%70)) ///
+		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(maroon%70)) ///
+		   , graphregion(color(white)) legend(off) xlabel(`=`artificial'-`delta''(1)`=`delta'-`artificial'') xline(`cutoff', lcolor(black)) xtitle("Points away from cutoff") ytitle(`y_label')
+	end
+	
+	*** Produces rd_plots around MID
+	capt prog drop my_rdplot_mid
+	program my_rdplot_mid, rclass
+	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 90) artificial(real 0.5)] 
+	
+	marksample touse
+	markout `touse' `by'
+	gettoken var running_var : varlist
+	
+	tempvar var_mean
+	
+	local y_label: variable label `var'
+	egen `var_mean' = mean(`var'), by(`running_var')
+	
+	*	RD graph
+	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(maroon) acolor(maroon%10)) ///
+		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(navy) acolor(navy%10)) ///
+		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(maroon%70)) ///
+		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(navy%70)) ///
+		   , graphregion(color(white)) legend(off) xlabel(`=`artificial'-`delta''(1)`=`delta'-`artificial'') xline(`cutoff', lcolor(black)) xtitle("Points away from MID") ytitle(`y_label')
 	end
 	
 	exit
