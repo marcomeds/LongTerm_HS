@@ -150,5 +150,23 @@ set more off, permanently
 		
 	end
 	
+	*** Produces rd_plots
+	capt prog drop my_rdplot
+	program my_rdplot, rclass
+	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3)] 
+	
+	marksample touse
+	markout `touse' `by'
+	gettoken var running_var : varlist
+	
+	* Below threshold
+	*reg `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta'')
+	
+	
+	*	RD graph
+	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'')) ///
+		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff'))
+	end
+	
 	exit
 	
