@@ -5,6 +5,7 @@
 \usepackage{bookmark}
 \usepackage{graphicx}             
 \graphicspath{{./Figuras/}}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{todonotes}
 \usepackage{makecell}
 \usepackage[margin=1in]{geometry}
@@ -41,6 +42,8 @@
 
 \epstopdfDeclareGraphicsRule{.tif}{png}{.png}{convert #1 \OutputFile}
 \AppendGraphicsExtensions{.tif}
+
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
@@ -80,6 +83,10 @@
 
 
 \usepackage{colortbl}
+\usepackage{url}
+\urlstyle{rm}
+\definecolor{darkblue}{rgb}{0,0,.4}
+\hypersetup{colorlinks=true, breaklinks=true, citecolor=Maroon, linkcolor=darkblue, menucolor=darkblue, urlcolor=darkblue}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{claim}[theorem]{Claim}
