@@ -77,7 +77,7 @@ foreach var in $vars_outcomes {
 }
 
 *IPN
-foreach var in $vars_balance {
+foreach var in $vars_outcomes {
 	
 	my_rdplot_mid `var' r_mid_IPN3
 	graph export "$figures/rd_plot_mid_`var'_IPN3.pdf", replace
@@ -88,7 +88,7 @@ foreach var in $vars_balance {
 }
 
 *UNAM
-foreach var in $vars_balance {
+foreach var in $vars_outcomes {
 	
 	my_rdplot_mid `var' r_mid_UNAM3
 	graph export "$figures/rd_plot_mid_`var'_UNAM3.pdf", replace
