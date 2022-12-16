@@ -225,7 +225,7 @@ A
 
 \subsection{Intent to treat effects}
 
-One problem is UNAM students do not present the ENLANCE exam. Thus, all outcomes related with ENLANCE can only be ``reliably'' measured for those assigned to an IPN school. The results using UNAM students are presented for completeness. 
+One problem is UNAM students do not present the ENLACE exam. Thus, all outcomes related with ENLACE can only be ``reliably'' measured for those assigned to an IPN school. The results using UNAM students are presented for completeness. 
 
 \subsubsection{Including UNAM assignments}
 
@@ -724,6 +724,50 @@ One problem is UNAM students do not present the ENLANCE exam. Thus, all outcomes
 \textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
 \end{figure}
 
+\subsection{Treatment RD plots}
+
+\begin{figure}[H]
+
+    \caption{RD plots for treatment variables\label{fig:treat_rd_plot}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \caption{IPN or UNAM assignment around cutoff}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Elite_assig_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \caption{IPN or UNAM assignment around MID}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Elite_assig_pdelta3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \caption{IPN assignment around cutoff}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_IPN_assig_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \caption{IPN assignment around MID}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_IPN_assig_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \caption{UNAM assignment around cutoff}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_UNAM_assig_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \caption{UNAM assignment around MID}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_UNAM_assig_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
 
 \subsection{Intent to treat RD plots}
 
@@ -783,11 +827,11 @@ One problem is UNAM students do not present the ENLANCE exam. Thus, all outcomes
 
     \begin{subfigure}{0.475\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_mat_3_Un_pdelta3.pdf}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_mat_3_pdelta3.pdf}
     \end{subfigure}
     \begin{subfigure}{0.475\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_mat_3_Un_pdelta3.pdf}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_mat_3_pdelta3.pdf}
     \end{subfigure}
 
     \begin{subfigure}{0.475\textwidth}
@@ -835,6 +879,524 @@ One problem is UNAM students do not present the ENLANCE exam. Thus, all outcomes
     \begin{subfigure}{0.475\textwidth}
         \centering
         \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Suspencion_INE_pdelta3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to either UNAM or IPN high-school, and those who are not\label{fig:ITT_rd_plot_elite_4}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Death_INE_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Death_INE_pdelta3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Expired_INE_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Expired_INE_pdelta3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_bachillerato_mas_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_bachillerato_mas_pdelta3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to either UNAM or IPN high-school, and those who are not\label{fig:ITT_rd_plot_elite_5}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_licenciatura_mas_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_licenciatura_mas_pdelta3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Unemployed_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Unemployed_pdelta3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Housewife_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Housewife_pdelta3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to either UNAM or IPN high-school, and those who are not\label{fig:ITT_rd_plot_elite_6}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Selfemployed_pdelta3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Selfemployed_pdelta3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\subsubsection{IPN assignments}
+
+\begin{figure}[H]
+
+    \caption{RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_1}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_ANY_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_ANY_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_Privado_Un_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_Privado_Un_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_Privado_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_Privado_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_2}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_esp_3_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_esp_3_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_mat_3_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_mat_3_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2012_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2012_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_3}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2015_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2015_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2018_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2018_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Suspencion_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Suspencion_INE_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_4}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Death_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Death_INE_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Expired_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Expired_INE_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_bachillerato_mas_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_bachillerato_mas_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_5}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_licenciatura_mas_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_licenciatura_mas_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Unemployed_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Unemployed_IPN3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Housewife_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Housewife_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to IPN high-school, and those who are not\label{fig:ITT_rd_plot_IPN_6}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Selfemployed_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Selfemployed_IPN3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\subsubsection{UNAM assignments}
+
+\begin{figure}[H]
+
+    \caption{RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_1}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_ANY_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_ANY_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_Privado_Un_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_Privado_Un_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_Privado_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_Privado_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_2}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_esp_3_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_esp_3_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_p_mat_3_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_p_mat_3_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2012_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2012_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_3}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2015_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2015_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2018_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2018_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Suspencion_INE_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Suspencion_INE_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_4}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Death_INE_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Death_INE_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Expired_INE_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Expired_INE_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_bachillerato_mas_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_bachillerato_mas_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_5}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_licenciatura_mas_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_licenciatura_mas_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Unemployed_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Unemployed_UNAM3.pdf}
+    \end{subfigure}
+
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Housewife_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Housewife_UNAM3.pdf}
+    \end{subfigure}
+    \end{center}
+    
+\footnotesize
+\textit{Notes}: Left side figures plot the regression discontinuity 3 points around the cutoff. Observations in the left side of the cutoff are ineligible to be assigned (controls), observations in the right side are eligible to be assigned (treated). Right side figures plot the regression discontinuity 3 points around the most informative disqualification (MID). Observations in the left side of the MID are eligible to be assigned (treated), observations in the right side are also eligible to be assigned, but they are also eligible at a higher ranked school (controls). All plots include students with marginal probability of being assigned to an elite school by the assignment mechanisms following \citet{abdulkadirouglu2022breaking}. 
+\end{figure}
+
+\begin{figure}[H]
+
+    \ContinuedFloat
+    \caption{(Cont.) RD plots for outcome variables across those assigned to UNAM high-school, and those who are not\label{fig:ITT_rd_plot_UNAM_6}}
+    \begin{center}
+    
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Selfemployed_UNAM3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Selfemployed_UNAM3.pdf}
     \end{subfigure}
     \end{center}
     
