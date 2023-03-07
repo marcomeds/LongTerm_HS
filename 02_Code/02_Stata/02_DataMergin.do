@@ -1,3 +1,27 @@
+clear
+gen anho=.
+foreach ano in 2005 2006 2007 2008 2009 2010{
+	append using "$output/metro_`ano'_ENLACE.dta", keep(registro curp folio opc_ed01- opc_ed20)
+	replace anho=`ano' if anho==.
+	compress
+}
+replace curp = stritrim(curp)
+	replace curp = strtrim(curp)
+	replace curp = subinstr(curp, " ", "", .)
+	gen length_curp=strlen(curp)
+	drop if length_curp!=16
+	bys anho curp: gen N=_N
+	drop if N>1
+	drop N length_curp
+	egen strata_choice_year=group(anho opc_ed01- opc_ed20), missing
+	egen strata_choice=group(opc_ed01- opc_ed20), missing
+	gen curp_short=curp
+	keep registro curp folio curp_short strata_choice strata_choice_year anho
+	destring folio, replace force
+drop if folio==.
+save "$output/strata_choices", replace	
+
+	
 foreach ano in 2005 2006 2007 2008 2009 2010{
 	use "$output/metro`ano'_pdelta1.dta", clear
 	replace curp = stritrim(curp)
@@ -362,23 +386,8 @@ save "$output/metro_Reg", replace
 
 
 
-
-**FINAL BASIC MANIPULATIONS **
-
+* Create database for RD_plots
 use "$output/metro_Reg.dta", clear
-egen marginal=anycount(p_delta*_5* p_delta*_6*), values(5)
-drop if marginal==0
-egen strata_pdelta1=group(anho p_delta1_*), missing
-egen strata_pdelta2=group(anho p_delta2_*), missing
-egen strata_pdelta3=group(anho p_delta3_*), missing
-
-egen strata_IPN1=group(anho p_delta1_5*), missing
-egen strata_IPN2=group(anho p_delta2_5*), missing
-egen strata_IPN3=group(anho p_delta3_5*), missing
-
-egen strata_UNAM1=group(anho p_delta1_6*), missing
-egen strata_UNAM2=group(anho p_delta2_6*), missing
-egen strata_UNAM3=group(anho p_delta3_6*), missing
 
 gen age2018 = (td(1jan2018)-sus_fnac)/365.25
 replace age2018=. if age2018<0
@@ -388,17 +397,64 @@ gen IPN_assig=(substr(copc_asi_string,1,1)=="5")
 gen UNAM_assig=(substr(copc_asi_string,1,1)=="6")
 gen Elite_assig=UNAM_assig+IPN_assig
 
-egen var_treat1=sd(Elite_assig), by(strata_pdelta1)
-egen var_treat2=sd(Elite_assig), by(strata_pdelta2)
-egen var_treat3=sd(Elite_assig), by(strata_pdelta3)
+gegen marginal=anycount(p_delta*_*), values(5) /*who is marginal for at least one school, with any bandwith*/
+drop p_delta*
+drop if marginal==0
+save "$output/metro_Reg_plots", replace
 
-egen var_IPN1=sd(IPN_assig), by(strata_IPN1)
-egen var_IPN2=sd(IPN_assig), by(strata_IPN2)
-egen var_IPN3=sd(IPN_assig), by(strata_IPN3)
 
-egen var_UNAM1=sd(UNAM_assig), by(strata_UNAM1)
-egen var_UNAM2=sd(UNAM_assig), by(strata_UNAM2)
-egen var_UNAM3=sd(UNAM_assig), by(strata_UNAM3)
 
+**FINAL BASIC MANIPULATIONS **
+use "$output/metro_Reg.dta", clear
+
+gen age2018 = (td(1jan2018)-sus_fnac)/365.25
+replace age2018=. if age2018<0
+gen hombre=(sus_sexo=="H")
+gen copc_asi_string = string(copc_asi,"%06.0f")
+gen IPN_assig=(substr(copc_asi_string,1,1)=="5")
+gen UNAM_assig=(substr(copc_asi_string,1,1)=="6")
+gen Elite_assig=UNAM_assig+IPN_assig
+
+gegen marginal=anycount(p_delta*_*), values(5) /*who is marginal for at least one school, with any bandwith*/
+
+drop r_mid_delta* 
+drop r_tau_delta*
+
+gegen strata_pdelta1=group(anho p_delta1_*), missing
+gegen strata_pdelta2=group(anho p_delta2_*), missing
+gegen strata_pdelta3=group(anho p_delta3_*), missing
+
+gegen strata_ELITE1=group(anho p_delta1_5* p_delta1_6*), missing
+gegen strata_ELITE2=group(anho p_delta2_5* p_delta1_6*), missing
+gegen strata_ELITE3=group(anho p_delta3_5* p_delta1_6*), missing
+
+gegen strata_IPN1=group(anho p_delta1_5*), missing
+gegen strata_IPN2=group(anho p_delta2_5*), missing
+gegen strata_IPN3=group(anho p_delta3_5*), missing
+
+gegen strata_UNAM1=group(anho p_delta1_6*), missing
+gegen strata_UNAM2=group(anho p_delta2_6*), missing
+gegen strata_UNAM3=group(anho p_delta3_6*), missing
+
+*gegen var_treat1=sd(Elite_assig), by(strata_pdelta1)
+*gegen var_treat2=sd(Elite_assig), by(strata_pdelta2)
+*gegen var_treat3=sd(Elite_assig), by(strata_pdelta3)
+
+gegen var_ELITE1=sd(Elite_assig), by(strata_ELITE1)
+gegen var_ELITE2=sd(Elite_assig), by(strata_ELITE2)
+gegen var_ELITE3=sd(Elite_assig), by(strata_ELITE3)
+
+gegen var_IPN1=sd(IPN_assig), by(strata_IPN1)
+gegen var_IPN2=sd(IPN_assig), by(strata_IPN2)
+gegen var_IPN3=sd(IPN_assig), by(strata_IPN3)
+
+gegen var_UNAM1=sd(UNAM_assig), by(strata_UNAM1)
+gegen var_UNAM2=sd(UNAM_assig), by(strata_UNAM2)
+gegen var_UNAM3=sd(UNAM_assig), by(strata_UNAM3)
+
+merge 1:1 curp anho using "$output/strata_choices", keepus(strata_choice_year strata_choice) nolabel nonotes keep(1 3)
 compress
-save "$output/metro_Reg_MARGINAL", replace
+
+save "$output/metro_Reg_TODOS", replace
+drop if marginal==0
+save "$output/metro_Reg_Marginal", replace
