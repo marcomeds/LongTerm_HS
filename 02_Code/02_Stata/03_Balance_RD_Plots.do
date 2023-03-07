@@ -1,4 +1,4 @@
-use "$output/metro_Reg_MARGINAL.dta", clear
+use "$output/metro_Reg_plots.dta", clear
 gen Tipo=substr(cve_cct,3,1)
 gen Secundaria_Privada=(Tipo=="P") if !missing(Tipo)
 gen ENLACE_Privado=(substr(cct_3,3,1)=="P" | substr(cct_4,3,1)=="P") if (!missing(cct_3) | !missing(cct_4))
@@ -27,10 +27,10 @@ replace r_tau_UNAM3 = . if inlist(r_tau_UNAM3, -3, -2, -1, 0, 1, 2, 3)
 foreach var in $vars_balance {
 	
 	my_rdplot_mid `var' r_mid_ELITE3
-	graph export "$figures/rd_plot_mid_`var'_pdelta3.pdf", replace
+	graph export "$figures/rd_plot_mid_`var'_ELITE3.pdf", replace
 	
 	my_rdplot_tau `var' r_tau_ELITE3
-	graph export "$figures/rd_plot_tau_`var'_pdelta3.pdf", replace
+	graph export "$figures/rd_plot_tau_`var'_ELITE3.pdf", replace
 	
 }
 

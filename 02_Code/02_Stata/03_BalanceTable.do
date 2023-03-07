@@ -1,4 +1,4 @@
-use "$output/metro_Reg_MARGINAL.dta", clear
+use "$output/metro_Reg_Marginal.dta", clear
 gen Tipo=substr(cve_cct,3,1)
 gen Secundaria_Privada=(Tipo=="P") if !missing(Tipo)
 gen ENLACE_Privado=(substr(cct_3,3,1)=="P" | substr(cct_4,3,1)=="P") if (!missing(cct_3) | !missing(cct_4))
@@ -17,38 +17,38 @@ global vars_balance age2018  hombre Secundaria_Privada sus_prom ano_cert  edad_p
 
 *overall
 eststo clear
-qui my_ptest_strata $vars_balance if var_treat1!=. & var_treat1!=0, strata(strata_pdelta1) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/Balance_NoRun_pdelta1.tex", replace $stars			///
+qui my_ptest_strata $vars_balance if var_ELITE1!=. & var_ELITE1!=0, strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/Balance_NoRun_ELITE1.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_balance if var_treat1!=. & var_treat1!=0, strata(strata_pdelta1) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/Balance_Run_pdelta1.tex", replace $stars			///
+qui my_ptest_strata_running $vars_balance if var_ELITE1!=. & var_ELITE1!=0, strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/Balance_Run_ELITE1.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 		
 
 eststo clear
-qui my_ptest_strata $vars_balance if var_treat2!=. & var_treat2!=0, strata(strata_pdelta2) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/Balance_NoRun_pdelta2.tex", replace $stars			///
+qui my_ptest_strata $vars_balance if var_ELITE2!=. & var_ELITE2!=0, strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/Balance_NoRun_ELITE2.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_balance if var_treat2!=. & var_treat2!=0, strata(strata_pdelta2) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/Balance_Run_pdelta2.tex", replace $stars			///
+qui my_ptest_strata_running $vars_balance if var_ELITE2!=. & var_ELITE2!=0, strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/Balance_Run_ELITE2.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 		
 
 eststo clear
-qui my_ptest_strata $vars_balance if var_treat3!=. & var_treat3!=0, strata(strata_pdelta3) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/Balance_NoRun_pdelta3.tex", replace $stars			///
+qui my_ptest_strata $vars_balance if var_ELITE3!=. & var_ELITE3!=0, strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/Balance_NoRun_ELITE3.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_balance if var_treat3!=. & var_treat3!=0, strata(strata_pdelta3) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/Balance_Run_pdelta3.tex", replace $stars			///
+qui my_ptest_strata_running $vars_balance if var_ELITE3!=. & var_ELITE3!=0, strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/Balance_Run_ELITE3.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 
 		

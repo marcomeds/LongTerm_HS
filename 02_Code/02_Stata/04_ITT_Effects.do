@@ -1,4 +1,4 @@
-use "$output/metro_Reg_MARGINAL.dta", clear
+use "$output/metro_Reg_Marginal.dta", clear
 gen Tipo=substr(cve_cct,3,1)
 gen Secundaria_Privada=(Tipo=="P") if !missing(Tipo)
 gen ENLACE_Privado=100*(substr(cct_3,3,1)=="P" | substr(cct_4,3,1)=="P") if (!missing(cct_3) | !missing(cct_4))
@@ -55,42 +55,42 @@ label var Selfemployed "\% Self-employed"
 
 global vars_outcomes ENLACE_ANY ENLACE_Privado_Un ENLACE_Privado p_esp_3 p_mat_3 Voto_Marcado* Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed
 
-
+global vars_outcomes_ine Voto_Marcado* Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed
 
 *overall
 eststo clear
-qui my_ptest_strata $vars_outcomes if var_treat1!=. & var_treat1!=0, strata(strata_pdelta1) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/ITT_EffectNoRun_pdelta1.tex", replace $stars			///
+qui my_ptest_strata $vars_outcomes if var_ELITE1!=. & var_ELITE1!=0, strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_EffectNoRun_ELITE1.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_outcomes if var_treat1!=. & var_treat1!=0, strata(strata_pdelta1) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/ITT_EffectRun_pdelta1.tex", replace $stars			///
+qui my_ptest_strata_running $vars_outcomes if var_ELITE1!=. & var_ELITE1!=0, strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/ITT_EffectRun_ELITE1.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 		
 
 eststo clear
-qui my_ptest_strata $vars_outcomes if var_treat2!=. & var_treat2!=0, strata(strata_pdelta2) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/ITT_EffectNoRun_pdelta2.tex", replace $stars			///
+qui my_ptest_strata $vars_outcomes if var_ELITE2!=. & var_ELITE2!=0, strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_EffectNoRun_ELITE2.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_outcomes if var_treat2!=. & var_treat2!=0, strata(strata_pdelta2) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/ITT_EffectRun_pdelta2.tex", replace $stars			///
+qui my_ptest_strata_running $vars_outcomes if var_ELITE2!=. & var_ELITE2!=0, strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/ITT_EffectRun_ELITE2.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 		
 
 eststo clear
-qui my_ptest_strata $vars_outcomes if var_treat3!=. & var_treat3!=0, strata(strata_pdelta3) clus_id(curp_short) treatment(Elite_assig)
-esttab  using "$tables/ITT_EffectNoRun_pdelta3.tex", replace $stars			///
+qui my_ptest_strata $vars_outcomes if var_ELITE3!=. & var_ELITE3!=0, strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_EffectNoRun_ELITE3.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
 		
 		
 eststo clear
-qui my_ptest_strata_running $vars_outcomes if var_treat3!=. & var_treat3!=0, strata(strata_pdelta3) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
-esttab  using "$tables/ITT_EffectRun_pdelta3.tex", replace $stars			///
+qui my_ptest_strata_running $vars_outcomes if var_ELITE3!=. & var_ELITE3!=0, strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig) running(nglobal)
+esttab  using "$tables/ITT_EffectRun_ELITE3.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 
 		
@@ -211,4 +211,210 @@ qui my_ptest_strata_running $vars_outcomes if var_UNAM3!=. & var_UNAM3!=0, strat
 esttab  using "$tables/ITT_EffectRun_UNAM3.tex", replace $stars			///
 		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))")
 		
+
+		
+****************
+* INE Outcomes *
+****************
+
+
+*-------*
+* Elite *
+*-------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE1!=. & var_ELITE1!=0, strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE1.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE2!=. & var_ELITE2!=0, strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE2.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE3!=. & var_ELITE3!=0, strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE3.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+*-----------*
+* Elite TAU *
+*-----------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE1!=. & var_ELITE1!=0 & !missing(r_tau_ELITE1), strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE1_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE2!=. & var_ELITE2!=0 & !missing(r_tau_ELITE2), strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE2_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE3!=. & var_ELITE3!=0 & !missing(r_tau_ELITE3), strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE3_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+*-----------*
+* Elite MID *
+*-----------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE1!=. & var_ELITE1!=0 & !missing(r_mid_ELITE1), strata(strata_ELITE1) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE1_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE2!=. & var_ELITE2!=0 & !missing(r_mid_ELITE2), strata(strata_ELITE2) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE2_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_ELITE3!=. & var_ELITE3!=0 & !missing(r_mid_ELITE3), strata(strata_ELITE3) clus_id(curp_short) treatment(Elite_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_ELITE3_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+			
+		
+*-----*
+* IPN *
+*-----*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN1!=. & var_IPN1!=0, strata(strata_IPN1) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN1.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN2!=. & var_IPN2!=0, strata(strata_IPN2) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN2.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN3!=. & var_IPN3!=0, strata(strata_IPN3) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN3.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+*---------*
+* IPN TAU *
+*---------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN1!=. & var_IPN1!=0 & !missing(r_tau_IPN1), strata(strata_IPN1) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN1_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN2!=. & var_IPN2!=0 & !missing(r_tau_IPN2), strata(strata_IPN2) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN2_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN3!=. & var_IPN3!=0 & !missing(r_tau_IPN3), strata(strata_IPN3) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN3_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+*---------*
+* IPN MID *
+*---------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN1!=. & var_IPN1!=0 & !missing(r_mid_IPN1), strata(strata_IPN1) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN1_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN2!=. & var_IPN2!=0 & !missing(r_mid_IPN2), strata(strata_IPN2) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN2_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_IPN3!=. & var_IPN3!=0 & !missing(r_mid_IPN3), strata(strata_IPN3) clus_id(curp_short) treatment(IPN_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_IPN3_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+			
+*------*
+* UNAM *
+*------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM1!=. & var_UNAM1!=0, strata(strata_UNAM1) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM1.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM2!=. & var_UNAM2!=0, strata(strata_UNAM2) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM2.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM3!=. & var_UNAM3!=0, strata(strata_UNAM3) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM3.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+*----------*
+* UNAM TAU *
+*----------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM1!=. & var_UNAM1!=0 & !missing(r_tau_UNAM1), strata(strata_UNAM1) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM1_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM2!=. & var_UNAM2!=0 & !missing(r_tau_UNAM2), strata(strata_UNAM2) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM2_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM3!=. & var_UNAM3!=0 & !missing(r_tau_UNAM3), strata(strata_UNAM3) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM3_tau.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+		
+*----------*
+* UNAM MID *
+*----------*
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM1!=. & var_UNAM1!=0 & !missing(r_mid_UNAM1), strata(strata_UNAM1) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM1_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM2!=. & var_UNAM2!=0 & !missing(r_mid_UNAM2), strata(strata_UNAM2) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM2_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+eststo clear
+qui my_ptest_strata $vars_outcomes_ine if var_UNAM3!=. & var_UNAM3!=0 & !missing(r_mid_UNAM3), strata(strata_UNAM3) clus_id(curp_short) treatment(UNAM_assig)
+esttab  using "$tables/ITT_Effect_INE_NoRun_UNAM3_mid.tex", replace $stars			///
+		cells("c_1(fmt(%9.2fc)) t_1(fmt(%9.2fc) star pvalue(p_1))" "cse_1(fmt(%9.2fc) par) tse_1(fmt(%9.2fc) par)" "cN_1(par([ ]) fmt(%9.0gc)) tN_1(par([ ]) fmt(%9.0gc))") 
+		
+
+
 		

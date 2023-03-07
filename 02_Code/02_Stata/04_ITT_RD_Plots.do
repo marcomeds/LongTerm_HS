@@ -1,4 +1,4 @@
-use "$output/metro_Reg_MARGINAL.dta", clear
+use "$output/metro_Reg_plots.dta", clear
 gen Tipo=substr(cve_cct,3,1)
 gen Secundaria_Privada=(Tipo=="P") if !missing(Tipo)
 gen ENLACE_Privado=100*(substr(cct_3,3,1)=="P" | substr(cct_4,3,1)=="P") if (!missing(cct_3) | !missing(cct_4))
@@ -8,7 +8,7 @@ gen Voto_Marcado_2015=(voto_2015==1)*100
 gen Voto_Marcado_2018=(voto_2018==1)*100 
 
 egen ENLACE_ANY=rowmax(ENLACE_3 ENLACE_4)
-replace ENLACE_ANY=ENLACE_ANY*100
+replace ENLACE_ANY=ENLACE_ANY *100
 
 gen Suspencion_INE=(tipo_baja_INE=="SUSPENSION")*100 
 gen Death_INE=(tipo_baja_INE=="DEFUNCION")*100 
@@ -69,10 +69,10 @@ replace r_tau_UNAM3 = . if inlist(r_tau_UNAM3, -3, -2, -1, 0, 1, 2, 3)
 foreach var in $vars_outcomes {
 	
 	my_rdplot_mid `var' r_mid_ELITE3
-	graph export "$figures/rd_plot_mid_`var'_pdelta3.pdf", replace
+	graph export "$figures/rd_plot_mid_`var'_ELITE3.pdf", replace
 	
 	my_rdplot_tau `var' r_tau_ELITE3
-	graph export "$figures/rd_plot_tau_`var'_pdelta3.pdf", replace
+	graph export "$figures/rd_plot_tau_`var'_ELITE3.pdf", replace
 	
 }
 

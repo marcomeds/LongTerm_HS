@@ -162,11 +162,8 @@ set more off, permanently
 	tempvar var_mean
 	
 	local y_label: variable label `var'
-	egen `var_mean' = mean(`var'), by(`running_var')
-	
-	* Below threshold
-	*reg `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta'')
-	
+	bysort `running_var': egen `var_mean' = mean(`var') if !missing(`running_var')
+	bysort `running_var': replace `var_mean' = . if _n != 1
 	
 	*	RD graph
 	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(navy) acolor(navy%10)) ///
@@ -188,7 +185,8 @@ set more off, permanently
 	tempvar var_mean
 	
 	local y_label: variable label `var'
-	egen `var_mean' = mean(`var'), by(`running_var')
+	bysort `running_var': egen `var_mean' = mean(`var') if !missing(`running_var')
+	bysort `running_var': replace `var_mean' = . if _n != 1
 	
 	*	RD graph
 	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(maroon) acolor(maroon%10)) ///
