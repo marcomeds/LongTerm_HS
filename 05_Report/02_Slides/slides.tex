@@ -198,7 +198,7 @@ ITAM && ITAM/MSU && World Bank \\ \\
 \begin{frame}[fragile]{Motivation}
   \begin{itemize}[<+->]
     \vfill\item Most cities/countries have schools that are deemed ``elite'' (high demand)
-    \vfill\item These schools \text{do not} have better ``value-added'' in terms of academic outcomes for the marginal applicant \tiny{\citep{Adrienne2014,ElliteIllusion,DobbieFryer2014,dustan2017flourish,ParentsValueEffectiveness}}
+    \vfill\item Mostly, these schools \text{do not} have better ``value-added'' in terms of academic outcomes for the marginal applicant \tiny{\citep{Adrienne2014,ElliteIllusion,DobbieFryer2014,dustan2017flourish,ParentsValueEffectiveness}}
 \vfill\item What drives demand for these schools?
   \begin{itemize}
     \vfill\item Maybe they have effects on labor market outcomes?
@@ -489,7 +489,7 @@ $$Y_i=\alpha 1_{s_i>c}+a(s_i,c)+\sum_{x}\gamma_{x}d_{i}(x)+\varepsilon_i $$
 \subsection{Balance}
 
 \begin{frame}[label=balance_rd_plot, fragile]{RD plots for balance variables}
-Example of balance across those assigned to an elite school and those who are not. \hyperlink{balance_rd_plot_app}{\beamergotobutton{Balance RD plots}}
+Example of balance across those assigned to an IPN school and those who are not. \hyperlink{balance_rd_plot_app}{\beamergotobutton{Balance RD plots}}
 
 \onslide<2-10>{
 \begin{figure}
@@ -530,7 +530,7 @@ Example of balance across those assigned to an elite school and those who are no
 
 \end{frame}
 
-\begin{frame}[fragile]{Balance across those assigned and not assigned to an elite school}
+\begin{frame}[fragile]{Balance across those assigned and not assigned to an IPN school}
 \begin{table}[H]
 \centering
 \begin{adjustbox}{totalheight=0.85\textheight}
@@ -591,12 +591,12 @@ Treatment assignment has a jump at both the cutoff and the MID.
     \begin{itemize}
         \item[]
         \item<7-> RD around the most informative disqualification (MID).
-        \item<8-> Jump is not sharp since an individual could be eligible at a higher ranked school, and this school could also be elite.
+        \item<8-> Jump is not sharp since an individual could be eligible at a higher ranked school, and this school could also be IPN.
         \item<9-> Still, we observe that \textcolor{blue}{treatment is higher to the left of the MID}.
     \end{itemize}}
     {\begin{subfigure}{\textwidth}
         \centering
-        \caption{Assignment to IPN around cutoff}
+        \caption{Assignment to an IPN HS around MID}
         \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_IPN_assig_IPN3.pdf}
     \end{subfigure}}
 \end{column}
@@ -606,12 +606,12 @@ Treatment assignment has a jump at both the cutoff and the MID.
     \begin{itemize}
         \item[]
         \item<3-> RD around the cutoff.
-        \item<4-> Jump is not sharp since, student could be eligible at a lower-ranked school, and this school could also elite.
+        \item<4-> Jump is not sharp since, student could be eligible at a lower-ranked school, and this school could also IPN.
         \item<5-> Still, we observe that \textcolor{blue}{treatment is higher to the right of the cutoff}.
     \end{itemize}}
     {\begin{subfigure}{\textwidth}
         \centering
-        \caption{Assignment to IPN around MID}
+        \caption{Assignment to an IPN HS around MID}
         \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_IPN_assig_IPN3.pdf}
     \end{subfigure}}
 \end{column}
@@ -636,12 +636,12 @@ Treatment assignment has a jump at both the cutoff and the MID.
         \item[]
         \item[]
         \item<6-> RD around the most informative disqualification (MID).
-        \item<7-> Positive ITT effect of being marginally assigned to an elite high school around the MID.
+        \item<7-> Positive ITT effect of being marginally assigned to an IPN high school around the MID.
     \end{itemize}}
     {\begin{subfigure}{\textwidth}
         \centering
         \caption{Graduation rate around cutoff}
-        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_ENLACE_ANY_IPN3.pdf}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_bachillerato_mas_IPN3.pdf}
     \end{subfigure}}
 \end{column}
 
@@ -651,12 +651,12 @@ Treatment assignment has a jump at both the cutoff and the MID.
         \item[]
         \item[]
         \item<3-> RD around the cutoff.
-        \item<4-> Negative ITT effect of being marginally assigned to an elite high school.
+        \item<4-> Negative ITT effect of being marginally assigned to an IPN high school.
     \end{itemize}}
     {\begin{subfigure}{\textwidth}
         \centering
         \caption{Graduation rate around MID}
-        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_ENLACE_ANY_IPN3.pdf}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_bachillerato_mas_IPN3.pdf}
     \end{subfigure}}
 \end{column}
 \end{columns}
@@ -666,14 +666,14 @@ Treatment assignment has a jump at both the cutoff and the MID.
 
 \end{frame}
 
-\begin{frame}[fragile]{Intent to treat effects of being assigned to an IPN high-schools}
+\begin{frame}[fragile]{Intent to treat effects of being assigned to an IPN high-school}
 \begin{table}[H]
 \centering
-\begin{adjustbox}{totalheight=2.3\textheight}
+\begin{adjustbox}{totalheight=0.88\textheight}
 \begin{threeparttable}
 \centering
 %\caption{Intent to treat effects of being assigned to an IPN high-school}
-\label{tab:ITT_EffectNoRun_IPN}
+\label{tab:ITT_Effect_INE_NoRun_IPN}
 \begin{tabular}[t]{@{}l@{}l@{}l}
 \toprule
 \begin{tabular}[t]{lcc}
@@ -683,7 +683,7 @@ Treatment assignment has a jump at both the cutoff and the MID.
 & mean & differential \\
 &   (1) 	&  (2)		\\
 \midrule
-\input{03_Tables/ITT_EffectNoRun_IPN1}
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN1}
 \end{tabular}
 &
 \onslide<2->{
@@ -694,7 +694,7 @@ Treatment assignment has a jump at both the cutoff and the MID.
 & mean & differential \\
 &   (3) 	&  (4)		\\
 \midrule
-\input{03_Tables/ITT_EffectNoRun_IPN2}
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN2}
 \end{tabular}}
 &
 \onslide<3->{
@@ -705,7 +705,103 @@ Treatment assignment has a jump at both the cutoff and the MID.
 & mean & differential \\
 &   (5) 	&  (6)		\\
 \midrule
-\input{03_Tables/ITT_EffectNoRun_IPN3}
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN3}
+\end{tabular}}
+\tabularnewline \bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{adjustbox}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Intent to treat effects of being assigned to an IPN high-school using the cutoff}
+\begin{table}[H]
+\centering
+\begin{adjustbox}{totalheight=0.88\textheight}
+\begin{threeparttable}
+\centering
+%\caption{Intent to treat effects of being assigned to an IPN high-school}
+\label{tab:ITT_Effect_INE_NoRun_IPN_tau}
+\begin{tabular}[t]{@{}l@{}l@{}l}
+\toprule
+\begin{tabular}[t]{lcc}
+&	\multicolumn{2}{c}{1 point} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (1) 	&  (2)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN1_tau}
+\end{tabular}
+&
+\onslide<2->{
+\begin{tabular}[t]{Hcc}
+&	\multicolumn{2}{c}{2 points} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (3) 	&  (4)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN2_tau}
+\end{tabular}}
+&
+\onslide<3->{
+\begin{tabular}[t]{Hcc}
+&	\multicolumn{2}{c}{3 points} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (5) 	&  (6)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN3_tau}
+\end{tabular}}
+\tabularnewline \bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{adjustbox}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Intent to treat effects of being assigned to an IPN high-school using the MID}
+\begin{table}[H]
+\centering
+\begin{adjustbox}{totalheight=0.88\textheight}
+\begin{threeparttable}
+\centering
+%\caption{Intent to treat effects of being assigned to an IPN high-school}
+\label{tab:ITT_Effect_INE_NoRun_IPN_mid}
+\begin{tabular}[t]{@{}l@{}l@{}l}
+\toprule
+\begin{tabular}[t]{lcc}
+&	\multicolumn{2}{c}{1 point} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (1) 	&  (2)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN1_mid}
+\end{tabular}
+&
+\onslide<2->{
+\begin{tabular}[t]{Hcc}
+&	\multicolumn{2}{c}{2 points} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (3) 	&  (4)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN2_mid}
+\end{tabular}}
+&
+\onslide<3->{
+\begin{tabular}[t]{Hcc}
+&	\multicolumn{2}{c}{3 points} \\
+ \cmidrule(lr){2-3}
+& Control &		Treatment 	\\ 
+& mean & differential \\
+&   (5) 	&  (6)		\\
+\midrule
+\input{03_Tables/ITT_Effect_INE_NoRun_IPN3_mid}
 \end{tabular}}
 \tabularnewline \bottomrule
 \end{tabular}
@@ -985,17 +1081,203 @@ Treatment assignment has a jump at both the cutoff and the MID.
 \end{figure}
 \end{frame}
 
-% \begin{frame}[label=appendix_end]{Use it to intimidate audiences!}
-%   \begin{itemize}
-%     \item[] Now you can make it clear you've done a shitload of work
-%       \begin{itemize}
-%       \item[]  without having to show everything! \hyperlink{appendix_start}{\beamergotobutton{Back}}
-%       \end{itemize}
-%     \item[] You label a frame with the \texttt{[label=name]} option, and then point a link to it
-%     \item[] You can make an object a link using the \texttt{\textbackslash hyperlink\{label\}\{object\}} command
-%   \end{itemize}
-% \end{frame}
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2012) around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2012_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2012) around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2012_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2015) around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2015_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2015) around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2015_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2018) around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Voto_Marcado_2018_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Voted (2018) around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Voto_Marcado_2018_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Crime (INE) around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Suspencion_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Crime (INE) around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Suspencion_INE_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Death (INE) around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Death_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Death (INE) around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Death_INE_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% INE expired around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Expired_INE_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% INE expired around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Expired_INE_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Completed HS around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_bachillerato_mas_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Completed HS around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_bachillerato_mas_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Post-secondary education around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_licenciatura_mas_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Post-secondary education around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_licenciatura_mas_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Unemployed around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Unemployed_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Unemployed around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Unemployed_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
+
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Housewife around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Housewife_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Housewife around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Housewife_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
 
 
+\begin{frame}{RD plots of ITT effects for outcomes}
+\hyperlink{ITT_rd_plot_IPN}{\beamergotobutton{Back}}
+\begin{figure}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Self-employed around cutoff}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_tau_Selfemployed_IPN3.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \caption{\% Self-employed around MID}
+        \includegraphics[width=\textwidth]{04_Figures/rd_plot_mid_Selfemployed_IPN3.pdf}
+    \end{subfigure}
+    
+\end{figure}
+\end{frame}
 
 \end{document}
