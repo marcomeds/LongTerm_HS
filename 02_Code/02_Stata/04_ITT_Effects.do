@@ -55,7 +55,7 @@ label var Selfemployed "\% Self-employed"
 
 global vars_outcomes ENLACE_ANY ENLACE_Privado_Un ENLACE_Privado p_esp_3 p_mat_3 Voto_Marcado* Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed
 
-global vars_outcomes_ine Voto_Marcado* Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed
+global vars_outcomes_ine Voto_Marcado_2018 Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed
 
 *overall
 eststo clear

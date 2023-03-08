@@ -385,25 +385,6 @@ compress
 save "$output/metro_Reg", replace
 
 
-
-* Create database for RD_plots
-use "$output/metro_Reg.dta", clear
-
-gen age2018 = (td(1jan2018)-sus_fnac)/365.25
-replace age2018=. if age2018<0
-gen hombre=(sus_sexo=="H")
-gen copc_asi_string = string(copc_asi,"%06.0f")
-gen IPN_assig=(substr(copc_asi_string,1,1)=="5")
-gen UNAM_assig=(substr(copc_asi_string,1,1)=="6")
-gen Elite_assig=UNAM_assig+IPN_assig
-
-gegen marginal=anycount(p_delta*_*), values(5) /*who is marginal for at least one school, with any bandwith*/
-drop p_delta*
-drop if marginal==0
-save "$output/metro_Reg_plots", replace
-
-
-
 **FINAL BASIC MANIPULATIONS **
 use "$output/metro_Reg.dta", clear
 
@@ -458,3 +439,14 @@ compress
 save "$output/metro_Reg_TODOS", replace
 drop if marginal==0
 save "$output/metro_Reg_Marginal", replace
+
+
+
+* Create database for RD_plots
+use "$output/metro_Reg.dta", clear
+
+keep curp anho r_mid* r_tau*
+merge 1:1 curp anho using "$output/metro_Reg_Marginal", nogen keep(3)
+drop p_delta*
+
+save "$output/metro_Reg_plots", replace
