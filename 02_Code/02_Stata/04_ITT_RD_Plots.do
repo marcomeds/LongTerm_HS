@@ -20,7 +20,7 @@ gen licenciatura_mas=100*(escolaridad_2018=="LICENCIATURA" | escolaridad_2018=="
 
 
 gen Unemployed=100*(ocupacion_2018=="DESEMPLEADO") if !missing(ocupacion_2018)
-gen Housewife=100*(ocupacion_2018=="AMA DE CASA") if !missing(ocupacion_2018)
+gen Housewife=100*(ocupacion_2018=="AMA DE CASA") if !missing(ocupacion_2018) & hombre == 0
 gen Selfemployed=100*(ocupacion_2018=="TRABAJADOR POR SU CUENTA") if !missing(ocupacion_2018)
 
 
