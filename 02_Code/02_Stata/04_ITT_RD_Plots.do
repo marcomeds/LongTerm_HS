@@ -32,25 +32,25 @@ label var edad_pad "Father's age"
 label var edad_mad "Mother's age"
 
 
-label var ENLACE_Privado_Un "Graduated from private (\%)"
-label var ENLACE_Privado "Grad from private (\%)  \$|\$ Grad"
-label var ENLACE_ANY "Graduated (\%)"
-label var p_esp_3 "Spanish (ENLACE  \$|\$ Grad)"
-label var p_mat_3 "Math (ENLACE  \$|\$ Grad)"
-label var Voto_Marcado_2018 "\% Voted (2018)"
-label var Voto_Marcado_2015 "\% Voted (2015)"
-label var Voto_Marcado_2012 "\% Voted (2012)"
+label var ENLACE_Privado_Un "Graduated from private (%)"
+label var ENLACE_Privado "Grad from private (%) | Grad"
+label var ENLACE_ANY "Graduated (%)"
+label var p_esp_3 "Spanish (ENLACE | Grad)"
+label var p_mat_3 "Math (ENLACE | Grad)"
+label var Voto_Marcado_2018 "% Voted (2018)"
+label var Voto_Marcado_2015 "% Voted (2015)"
+label var Voto_Marcado_2012 "% Voted (2012)"
 
 
-label var Suspencion_INE "\% Crime (INE)"
-label var Death_INE "\% Death (INE)"
-label var Expired_INE "\% INE expired"
+label var Suspencion_INE "% Crime (INE)"
+label var Death_INE "% Death (INE)"
+label var Expired_INE "% INE expired"
 
-label var bachillerato_mas "\% Completed HS"
-label var licenciatura_mas "\% Post-secondary education"
-label var Unemployed "\% Unemployed"
-label var Housewife "\% Housewife"
-label var Selfemployed "\% Self-employed"
+label var bachillerato_mas "% Completed HS"
+label var licenciatura_mas "% Post-secondary education"
+label var Unemployed "% Unemployed"
+label var Housewife "% Housewife"
+label var Selfemployed "% Self-employed"
 
 
 global vars_outcomes ENLACE_ANY ENLACE_Privado_Un ENLACE_Privado p_esp_3 p_mat_3 Voto_Marcado_2012 Voto_Marcado_2015 Voto_Marcado_2018 Suspencion_INE Death_INE Expired_INE bachillerato_mas licenciatura_mas Unemployed Housewife Selfemployed

@@ -153,11 +153,14 @@ set more off, permanently
 	*** Produces rd_plots around tau
 	capt prog drop my_rdplot_tau
 	program my_rdplot_tau, rclass
-	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 90) artificial(real 0.5)] 
+	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 95) artificial(real 0.5)] 
 	
 	marksample touse
 	markout `touse' `by'
 	gettoken var running_var : varlist
+	
+	*preserve
+	*keep if `touse'
 	
 	tempvar var_mean
 	
@@ -166,21 +169,25 @@ set more off, permanently
 	bysort `running_var': replace `var_mean' = . if _n != 1
 	
 	*	RD graph
-	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(navy) acolor(navy%10)) ///
-		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(maroon) acolor(maroon%10)) ///
-		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(navy%70)) ///
-		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(maroon%70)) ///
+	twoway (lfitci `var' `running_var' if inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(navy) acolor(navy%10)) ///
+		   (lfitci `var' `running_var' if inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(maroon) acolor(maroon%10)) ///
+		   (scatter `var_mean' `running_var' if inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(navy%70)) ///
+		   (scatter `var_mean' `running_var' if inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(maroon%70)) ///
 		   , graphregion(color(white)) legend(off) xlabel(`=`artificial'-`delta''(1)`=`delta'-`artificial'') xline(`cutoff', lcolor(black)) xtitle("Points away from cutoff") ytitle(`y_label')
+	*restore
 	end
 	
 	*** Produces rd_plots around MID
 	capt prog drop my_rdplot_mid
 	program my_rdplot_mid, rclass
-	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 90) artificial(real 0.5)] 
+	syntax varlist(min=2 max=2) [if] [in] [, cutoff(real 0) delta(real 3) level(integer 95) artificial(real 0.5)] 
 	
 	marksample touse
 	markout `touse' `by'
 	gettoken var running_var : varlist
+	
+	*preserve
+	*keep if `touse'
 	
 	tempvar var_mean
 	
@@ -189,11 +196,12 @@ set more off, permanently
 	bysort `running_var': replace `var_mean' = . if _n != 1
 	
 	*	RD graph
-	twoway (lfitci `var' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(maroon) acolor(maroon%10)) ///
-		   (lfitci `var' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(navy) acolor(navy%10)) ///
-		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(maroon%70)) ///
-		   (scatter `var_mean' `running_var' if `touse' & inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(navy%70)) ///
+	twoway (lfitci `var' `running_var' if inrange(`running_var',`cutoff',`=`cutoff'+`delta''), range(`cutoff',`=`cutoff'+`delta'') level(`level') lcolor(maroon) acolor(maroon%10)) ///
+		   (lfitci `var' `running_var' if inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), range(`=`cutoff'-`delta'',`cutoff') level(`level') lcolor(navy) acolor(navy%10)) ///
+		   (scatter `var_mean' `running_var' if inrange(`running_var',`cutoff',`=`cutoff'+`delta''), color(maroon%70)) ///
+		   (scatter `var_mean' `running_var' if inrange(`running_var',`=`cutoff'-`delta'',`cutoff'), color(navy%70)) ///
 		   , graphregion(color(white)) legend(off) xlabel(`=`artificial'-`delta''(1)`=`delta'-`artificial'') xline(`cutoff', lcolor(black)) xtitle("Points away from MID") ytitle(`y_label')
+	*restore
 	end
 	
 	exit
