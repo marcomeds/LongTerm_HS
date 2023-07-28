@@ -205,7 +205,7 @@ ITAM && ITAM/MSU && World Bank \\ \\
       \begin{itemize}
      \vfill\item Peer composition does changes \tiny{\citep{ElliteIllusion,DobbieFryer2014,ParentsValueEffectiveness}}
        \end{itemize}
-    \vfill\item Maybe current RD estimates do not reflect treatment effects for most applicants
+    \vfill\item Current RD estimates may not reflect treatment effects for most applicants
   \end{itemize}
     \end{itemize}
 \end{frame}
@@ -272,24 +272,24 @@ ITAM && ITAM/MSU && World Bank \\ \\
 \end{frame}
 
 
-\begin{frame}[fragile]{High-school types and subsystems}
+\begin{frame}[fragile]{The 361 public schools in Mexico City are managed by nine entities}
   \begin{itemize}
-    \vfill\item The 361 public schools in Mexico City are managed by nine entities.
+    %\vfill\item The 361 public schools in Mexico City are managed by nine entities.
     
 \vfill\item 222 schools managed by 4 entities offer \textcolor{red}{traditional} high-school education 
-  \begin{itemize}
-\vfill\item Colegio de Bachilleres (COLBACH) $\rightarrow$ 20 schools
-\vfill\item Secretaría de Educación del
-Gobierno del Estado de México (SE) $\rightarrow$ 199 schools
-\vfill\item Dirección General del Bachillerato (DGB) $\rightarrow$ 2 schools
-\vfill\item Universidad Autónoma del Estado de México (UAEM) $\rightarrow$ 1 school
-  \end{itemize}  
+%   \begin{itemize}
+% \vfill\item Colegio de Bachilleres (COLBACH) $\rightarrow$ 20 schools
+% \vfill\item Secretaría de Educación del
+% Gobierno del Estado de México (SE) $\rightarrow$ 199 schools
+% \vfill\item Dirección General del Bachillerato (DGB) $\rightarrow$ 2 schools
+% \vfill\item Universidad Autónoma del Estado de México (UAEM) $\rightarrow$ 1 school
+%   \end{itemize}  
     \vfill\item 109 schools managed by 3 entities manage \textcolor{red}{vocational} schools
-  \begin{itemize}
-\vfill\item Colegio Nacional de Educación Profesional Técnica (CONALEP) $\rightarrow$ 57 schools
-\vfill\item Dirección General de Educación Tecnológica Agropecuaria (DGETA)  $\rightarrow$ 1 school
-\vfill\item Dirección General de Educación Tecnológica Industrial (DGETI)  $\rightarrow$ 51 schools
-  \end{itemize}  
+%   \begin{itemize}
+% \vfill\item Colegio Nacional de Educación Profesional Técnica (CONALEP) $\rightarrow$ 57 schools
+% \vfill\item Dirección General de Educación Tecnológica Agropecuaria (DGETA)  $\rightarrow$ 1 school
+% \vfill\item Dirección General de Educación Tecnológica Industrial (DGETI)  $\rightarrow$ 51 schools
+%   \end{itemize}  
 
     \vfill\item 30 schools managed by 2 entities are considered \textcolor{red}{elite}
       \begin{itemize}
@@ -301,7 +301,12 @@ Gobierno del Estado de México (SE) $\rightarrow$ 199 schools
   \end{itemize}
 \end{frame}
 
-\begin{frame}{High-school types and subsystems map}
+% \begin{frame}{High-school subsystems map}
+%     \centering
+%     \includegraphics[width=0.65\textwidth]{04_Figures/comipems_subsystem_map_ggmap.pdf}
+% \end{frame}
+
+\begin{frame}{High-school types map}
     \centering
     \includegraphics[width=0.65\textwidth]{04_Figures/comipems_type_map_ggmap.pdf}
 \end{frame}
@@ -370,7 +375,7 @@ Gobierno del Estado de México (SE) $\rightarrow$ 199 schools
     \vfill\item Aspirations
       \end{itemize}
 
-    \vfill\item Data from The National Electoral Institute (INE) for 2012, 2015, and 2018
+    \vfill\item Data from The National Electoral Institute (INE) for 2012, 2015, and \textbf{2018}
       \begin{itemize}
     \vfill\item If voted 
     \vfill\item Zipcode of residence 
@@ -481,7 +486,7 @@ $$Y_i=\alpha 1_{s_i>c}+a(s_i,c)+\sum_{x}\gamma_{x}\theta_{i}(x)+\varepsilon_i $$
   \begin{itemize}
   \vfill\item The sample consists of applicants for
 whom the score is 0.5
-\vfill\item We can now control for the local propensity score at each school
+\vfill\item Control for the local propensity score at each school
 $$Y_i=\alpha 1_{s_i>c}+a(s_i,c)+\sum_{x}\gamma_{x}d_{i}(x)+\varepsilon_i $$
 \end{itemize}
 \end{frame}
@@ -641,7 +646,7 @@ Treatment assignment has a jump at both the cutoff and the MID.
         \item[]
         \item[]
         \item<6-> RD around the most informative disqualification (MID).
-        \item<7-> Positive ITT effect of being marginally assigned to an IPN high school around the MID.
+        \item<7-> Negative ITT effect of being marginally assigned to an IPN high school around the MID.
     \end{itemize}}
     {\begin{subfigure}{\textwidth}
         \centering
@@ -821,16 +826,16 @@ Treatment assignment has a jump at both the cutoff and the MID.
 \end{table}
 \end{frame}
 
-\section{Conclusions}
+\section{Discussion}
 \begin{frame}[plain]{What can we take away from this?}
 \begin{itemize}
-\vfill \item Treatment effect heterogeneity matters a lot
+\vfill \item Treatment effect heterogeneity matters --- but need to fix the counterfactual 
 \vfill \item Still lots to do
 \vfill \item We aim to 
 \begin{enumerate}
 \vfill \item Estimate the marginal treatment effect distribution at each school exploiting the ``cutoffs'' for the next best option of each applicant \tiny{\citep{NBERw22363,Kowalski2021,Kowalski}}
 
-\vfill \item \normalsize Estimate ``value added'' of different schools on different outcomes, for different children
+\vfill \item \normalsize Estimate ``value added'' of different schools on different outcomes (against a fix counterfactual), for different children
 
 \vfill \item How do these VA estimates correlate, and what drives parental demand \tiny{\citep{Kirabo2020,Beuermann2022}}
 \end{enumerate}
